@@ -28,7 +28,7 @@ function countFooterClic() {
 }
 countFooterClic();
 
-
+// ---------------------------------------------------------------------------------------------
 // Fonctionnalité 2
 // clique sur ce bouton, l'élément HTML portant l'Id navbarHeader perde sa classe collapse. Une fois que ça, ça marche, fait que si on clique à nouveau dessus, la classe collapse soit rajoutée à nouveau à l'élément portant l'Id navbarHeader
 
@@ -46,23 +46,67 @@ function toggleNavbar() {
 }
 
 toggleNavbar();
+// --------------------------------------------------------------------------------------------
 
 // Fonctionnalité 3
 // clique sur le bouton "Edit" de la première card, le texte de la card va se mettre en rouge de façon irréversible (sauf si on recharge la page)
 
 function editHTML() {
   // sélectionne le bouton edit
-  const buttonCard1 = document.querySelector(".btn-group:first-of-type");
-  // console.log("sélect:", buttonCard1)
-  const buttonEdit = buttonCard1.querySelector("button:nth-of-type(2)");
-  // console.log("edit", buttonEdit);
+  const card1 = document.querySelectorAll(".card-body")[0];
+  // console.log("sélectcard:", card1)
+  const cardtext = card1.querySelector(".card-text");
+  // console.log("sélecttextt:", cardtext)
+  const buttonEdit = card1.querySelector("button:nth-of-type(2)");
+  // console.log("editbutton", buttonEdit);
   if (buttonEdit) {
     buttonEdit.addEventListener("click", function () {
       // console.log("button edit cliqué")
       // ajoute text en rouge avec bootstrap
-      buttonEdit.classList.add("text-danger")
+      cardtext.classList.add("text-danger")
     })
   }
 }
 
 editHTML();
+// --------------------------------------------------------------------------------------------
+
+// Fonctionnalité 4
+// si on clique sur le bouton "Edit" de la deuxième card, le texte de la card va se mettre en vert. Si on re-clique dessus, il redevient comme avant
+
+// avec class toggle 
+// function editCSS1() {
+//   const card2 = document.querySelectorAll(".card-body")[1];
+//   const cardtext = card2.querySelector(".card-text");
+//   const buttonEdit = card2.querySelector("button:nth-of-type(2)");
+//   if (buttonEdit && cardText) {
+//     buttonEdit.addEventListener("click", function () {
+//       cardtext.classList.toggle("text-success");
+//     });
+//   }
+// }
+
+// editCSS1();
+
+
+// sans class toggle
+
+function editCSS2() {
+  const cardBody2 = document.querySelectorAll(".card-body")[1];
+  const buttonEdit = cardBody2.querySelector("button:nth-of-type(2)");
+  const cardText = cardBody2.querySelector(".card-text");
+  if (buttonEdit && cardText) {
+    buttonEdit.addEventListener("click", function () {
+      if (cardText.style.color === 'green') {
+        cardText.style.color = '';
+      } else {
+        cardText.style.color = 'green';
+      }
+    });
+  }
+}
+
+editCSS2();
+
+
+// --------------------------------------------------------------------------------------------
