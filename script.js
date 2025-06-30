@@ -114,7 +114,8 @@ editCSS2();
 // Fonctionnalité 5
 // si un utilisateur double clique sur la navbar en haut, tout Bootstrap disparaît et la page s'affiche comme si on avait oublié de mettre le CDN qui la relie au fichier CSS. Si possible, rends cette fonctionnalité réversible (un nouveau double-clic fait tout revenir à la normale).
 // https://www.w3schools.com/jsref/event_ondblclick.asp
-// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_removeattributenode2
+// https://www.w3schools.com/jsref/met_element_getattribute.asp
+// https://www.w3schools.com/jsref/met_element_removeattribute.asp
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_createattribute2
 
 
@@ -137,4 +138,73 @@ function toggleLink() {
 }
 
 toggleLink();
+// --------------------------------------------------------------------------------------------
+
+// Fonctionnalité 6 
+// si un utilisateur passe sa souris sur le bouton "View" d'une card (n'importe laquelle), celle - ci va se réduire.Cela veut dire que le texte disparaît, l'image n'apparaîtra qu'à 20 % de sa taille d'origine et les boutons "Edit" / "View" restent visibles.Cette fonction sera réversible: s'il repasse sa souris, la card redevient normale !
+
+
+function changeCardContainer(cardContainer) {
+  const cardText = cardContainer.querySelector(".card-text");
+  const cardImage = cardContainer.querySelector(".card-img-top");
+  cardText.classList.add("changeStyle");
+  cardText.style.display = "none";
+  cardImage.style.width = "20%";
+}
+
+function restoreCardContainer(cardContainer) {
+  const cardText = cardContainer.querySelector(".card-text");
+  const cardImage = cardContainer.querySelector(".card-img-top");
+  cardText.style.display = "";
+  cardImage.style.width = "";
+  cardText.classList.remove("changeStyle");
+}
+
+function toggleView() {
+  const cardContainer = document.querySelectorAll(".card");
+  cardContainer.forEach(card => {
+    const buttonView = card.querySelector("button:nth-of-type(1)");
+    const cardText = card.querySelector(".card-text");
+    buttonView.addEventListener("mouseover", function () {
+      const isHidden = cardText.classList.contains("changeStyle");
+
+      if (isHidden) {
+        restoreCardContainer(card);
+      } else {
+        changeCardContainer(card);
+      }
+    })
+  });
+
+}
+
+toggleView();
+
+
+
+// --------------------------------------------------------------------------------------------
+
+
+
+
+// --------------------------------------------------------------------------------------------
+
+
+
+// --------------------------------------------------------------------------------------------
+
+
+/* <style>
+  .card-text {
+    transition: opacity 0.3s ease;
+  }
+  .card-img-top {
+    transition: transform 0.3s ease;
+  }
+  .card-text.hidden {
+    opacity: 0;
+  pointer-events: none;
+  }
+  .card-img-top.shrunk {
+    transform: scale(0.5); /* ou 0.8, selon l'effet souhaité */
 
