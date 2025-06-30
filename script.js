@@ -181,7 +181,7 @@ function toggleView() {
 toggleView();
 
 // --------------------------------------------------------------------------------------------
-// Fonctionnalité 7
+// Fonctionnalité 7 & 8
 //  si un utilisateur clique sur le bouton gris ==>, la dernière card (en bas à droite) va passer en premier (en haut à gauche). On va pouvoir faire tourner les cards !
 
 const buttonsContainer = document.querySelector(".jumbotron");
@@ -206,8 +206,37 @@ if (linkToAvoid.textContent.includes("<==")) {
   });
 }
 // --------------------------------------------------------------------------------------------
-// Fonctionnalité 8
-// 
+// Fonctionnalité 9
+// La fonctionnalité se déclenchera si le logo de la page (JS & Events) est sélectionné et qu'on appuie sur une touche spécifique du clavier.
+// Si l'utilisateur presse la touche "a", l'ensemble de la page va être condensé sur 4 colonnes Bootstrap à gauche de l'écran.
+// Si l'utilisateur presse la touche "y", l'ensemble de la page va être condensé sur 4 colonnes Bootstrap au milieu de l'écran.
+// Si l'utilisateur presse la touche "p", l'ensemble de la page va être condensé sur 4 colonnes Bootstrap à droite de l'écran.
+// Si l'utilisateur presse la touche "b", tout redevient normal
+
+const logo = document.querySelectorAll(".container")[1];
+logo.addEventListener("keypress", function (event) {
+  const body = document.querySelector("body");
+  switch (event.key) {
+    case "a":
+      body.classList.remove("offset-md-4", "offset-md-8");
+      body.classList.add("col-4");
+      break;
+    case "y":
+      body.classList.remove("col-4", "offset-md-8");
+      body.classList.add("offset-md-4");
+      break;
+    case "p":
+      body.classList.remove("col-4", "offset-md-4");
+      body.classList.add("offset-md-8");
+      break;
+    case "b":
+      body.classList.remove("col-4", "offset-md-4", "offset-md-8");
+      break;
+    default:
+      break;
+  }
+})
+
 
 
 // --------------------------------------------------------------------------------------------
