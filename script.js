@@ -110,3 +110,31 @@ editCSS2();
 
 
 // --------------------------------------------------------------------------------------------
+
+// Fonctionnalité 5
+// si un utilisateur double clique sur la navbar en haut, tout Bootstrap disparaît et la page s'affiche comme si on avait oublié de mettre le CDN qui la relie au fichier CSS. Si possible, rends cette fonctionnalité réversible (un nouveau double-clic fait tout revenir à la normale).
+// https://www.w3schools.com/jsref/event_ondblclick.asp
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_removeattributenode2
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_createattribute2
+
+
+function toggleLink() {
+  const head = document.querySelector("head");
+  const link = head.querySelector("link");
+  // console.log("link", link)
+  const attrValue = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  const navbar = document.querySelector("header");
+
+  navbar.addEventListener("dblclick", function () {
+    currentAttr = link.getAttribute("href");
+    if (currentAttr) {
+      link.removeAttribute("href");
+    } else {
+      link.setAttribute("href", attrValue);
+    }
+  })
+
+}
+
+toggleLink();
+
