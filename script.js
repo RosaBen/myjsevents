@@ -180,31 +180,33 @@ function toggleView() {
 
 toggleView();
 
+// --------------------------------------------------------------------------------------------
+// Fonctionnalité 7
+//  si un utilisateur clique sur le bouton gris ==>, la dernière card (en bas à droite) va passer en premier (en haut à gauche). On va pouvoir faire tourner les cards !
+
+const buttonsContainer = document.querySelector(".jumbotron");
+const previousBtn = buttonsContainer.querySelectorAll(".btn")[0];
+const nextBtn = buttonsContainer.querySelectorAll(".btn")[1];
+const cardsParent = document.querySelector(".album .row");
+const cardsContainer = document.querySelectorAll(".col-md-4");
+
+
+nextBtn.addEventListener("click", function () {
+  const firstCard = cardsParent.querySelector(".col-md-4");
+  cardsParent.appendChild(firstCard);
+})
+
+previousBtn.addEventListener("click", function () {
+  const cards = cardsParent.querySelectorAll(".col-md-4");
+  const lastCard = cards[cards.length - 1];
+  cardsParent.insertBefore(lastCard, cardsParent.firstElementChild);
+})
+// --------------------------------------------------------------------------------------------
+
 
 
 // --------------------------------------------------------------------------------------------
 
 
 
-
-// --------------------------------------------------------------------------------------------
-
-
-
-// --------------------------------------------------------------------------------------------
-
-
-/* <style>
-  .card-text {
-    transition: opacity 0.3s ease;
-  }
-  .card-img-top {
-    transition: transform 0.3s ease;
-  }
-  .card-text.hidden {
-    opacity: 0;
-  pointer-events: none;
-  }
-  .card-img-top.shrunk {
-    transform: scale(0.5); /* ou 0.8, selon l'effet souhaité */
 
