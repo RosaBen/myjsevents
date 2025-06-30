@@ -189,6 +189,7 @@ const previousBtn = buttonsContainer.querySelectorAll(".btn")[0];
 const nextBtn = buttonsContainer.querySelectorAll(".btn")[1];
 const cardsParent = document.querySelector(".album .row");
 const cardsContainer = document.querySelectorAll(".col-md-4");
+const linkToAvoid = document.querySelectorAll("a")[4];
 
 
 nextBtn.addEventListener("click", function () {
@@ -196,13 +197,17 @@ nextBtn.addEventListener("click", function () {
   cardsParent.appendChild(firstCard);
 })
 
-previousBtn.addEventListener("click", function () {
-  const cards = cardsParent.querySelectorAll(".col-md-4");
-  const lastCard = cards[cards.length - 1];
-  cardsParent.insertBefore(lastCard, cardsParent.firstElementChild);
-})
+if (linkToAvoid.textContent.includes("<==")) {
+  previousBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    const cards = cardsParent.querySelectorAll(".col-md-4");
+    const lastCard = cards[cards.length - 1];
+    cardsParent.insertBefore(lastCard, cardsParent.firstElementChild);
+  });
+}
 // --------------------------------------------------------------------------------------------
-
+// Fonctionnalité 8
+// 
 
 
 // --------------------------------------------------------------------------------------------
